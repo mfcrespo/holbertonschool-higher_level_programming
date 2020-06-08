@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Documentation for an append_write function"""
 
 
