@@ -10,7 +10,7 @@ def pascal_triangle(n):
         n (int): how many rows to make
 
     Returns:
-        The Pascal Triangle as a list of lists       
+        The Pascal Triangle as a list of lists
     """
     pascal = []
     prev_row = [1]
