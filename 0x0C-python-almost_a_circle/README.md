@@ -191,7 +191,7 @@ Update the class Base by adding the class method def create(cls, **dictionary): 
 	+ The filename must be: <Class name>.json - example: Rectangle.json
 	+ If the file doesn’t exist, return an empty list
 	+ Otherwise, return a list of instances - the type of these instances depends on cls (current class using this method)
-	+ You must use the from_json_string and create methods (implemented previously)
+	+ You must use the from_json_string and create methods (implemented previously).
 
 # **Authors**
 [Maria Crespo](https://twitter.com/mafe_crespo)
