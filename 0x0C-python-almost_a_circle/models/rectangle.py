@@ -129,3 +129,9 @@ class Rectangle(Base):
 
         self.coordinate("y", value)
         self.__y = value
+
+    def area(self):
+        """ that returns the area value of the Rectangle instance
+        """
+
+        return self.width * self.height
