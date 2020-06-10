@@ -18,12 +18,3 @@ class Square(Rectangle):
         """
 
         super().__init__(size, size, x, y, id)
-
-    def __str__(self):
-        """
-        The overloading __str__ method should return
-        [Square] (<id>) <x>/<y> - <size> - in our case, width or height
-        """
-
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x,
-                                                 self.y, self.size)
