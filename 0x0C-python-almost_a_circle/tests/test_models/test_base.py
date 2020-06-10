@@ -186,5 +186,137 @@ class TestBase(unittest.TestCase):
         os.remove("./Square.json")
         sys.stdout = sys.__stdout__
 
+    def test_save_to_file_one(self):
+        """ Test if save_to_file method works
+        """
+
+        r1 = Rectangle(10, 7, 2, 8, 50)
+        s1 = Square(8, 2, 3, 60)
+        r1_dictionary = [{"y": 8, "x": 2, "id": 50, "width": 10, "height": 7}]
+        s1_dictionary = [{"id": 60, "y": 3, "x": 2, "size": 8}]
+
+        Rectangle.save_to_file([r1])
+        Square.save_to_file([s1])
+
+        with open("Rectangle.json", "r") as file1:
+            r1_file_dict = file1.read()
+
+        with open("Square.json", "r") as file2:
+            s1_file_dict = file2.read()
+
+        r1_file_dict = json.loads(r1_file_dict)
+        s1_file_dict = json.loads(s1_file_dict)
+
+        self.assertEqual(r1_file_dict, r1_dictionary)
+        self.assertEqual(s1_file_dict, s1_dictionary)
+
+        os.remove("./Rectangle.json")
+        os.remove("./Square.json")
+
+    def test_save_to_file_two(self):
+        """ Test if save_to_file method can handle empty lists
+        """
+
+        r1_dictionary = []
+        s1_dictionary = []
+
+        Rectangle.save_to_file([])
+        Square.save_to_file([])
+
+        with open("Rectangle.json", "r") as file1:
+            r1_file_dict = file1.read()
+
+        with open("Square.json", "r") as file2:
+            s1_file_dict = file2.read()
+
+        r1_file_dict = json.loads(r1_file_dict)
+        s1_file_dict = json.loads(s1_file_dict)
+
+        self.assertEqual(r1_file_dict, r1_dictionary)
+        self.assertEqual(s1_file_dict, s1_dictionary)
+
+        os.remove("./Rectangle.json")
+        os.remove("./Square.json")
+
+    def test_save_to_file_three(self):
+        """ Test if save_to_file method can handle None
+        """
+
+        r1_dictionary = []
+        s1_dictionary = []
+
+        Rectangle.save_to_file(None)
+        Square.save_to_file(None)
+
+        with open("Rectangle.json", "r") as file1:
+            r1_file_dict = file1.read()
+
+        with open("Square.json", "r") as file2:
+            s1_file_dict = file2.read()
+
+        r1_file_dict = json.loads(r1_file_dict)
+        s1_file_dict = json.loads(s1_file_dict)
+
+        self.assertEqual(r1_file_dict, r1_dictionary)
+        self.assertEqual(s1_file_dict, s1_dictionary)
+
+        os.remove("./Rectangle.json")
+        os.remove("./Square.json")
+
+    def test_from_json_string_one(self):
+        """ Test if from_json_string method works on Rectangle
+        """
+
+        list_input = [{'id': 89, 'width': 10, 'height': 4},
+                      {'id': 7, 'width': 1, 'height': 7}]
+
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+
+        expected = [{"height": 4, "width": 10, "id": 89},
+                    {"height": 7, "width": 1, "id": 7}]
+
+        self.assertEqual(list_output, expected)
+
+    def test_from_json_string_two(self):
+        """ Test if from_json_string method works on Square
+        """
+
+        list_input = [{'id': 89, 'size': 10},
+                      {'id': 7, 'size': 1}]
+
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+
+        expected = [{'id': 89, 'size': 10},
+                    {'id': 7, 'size': 1}]
+
+        self.assertEqual(list_output, expected)
+
+    def test_from_json_string_three(self):
+        """ Test when from_json_string receives None
+        """
+
+        list_input = None
+
+        json_list_output = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_output)
+
+        expected = []
+
+        self.assertEqual(list_output, expected)
+
+    def test_from_json_string_four(self):
+        """ Test when from_json_string receives empty list
+        """
+
+        list_input = []
+        json_list_output = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_output)
+
+        expected = []
+
+        self.assertEqual(list_output, expected)
+
 if __name__ == '__main__':
     unittest.main()
