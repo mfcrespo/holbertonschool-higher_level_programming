@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Documentation for a Square class"""
+"""My Module for creating Rectangle class that inherits from Base
+"""
 
 
 from models.rectangle import Rectangle
@@ -7,23 +8,24 @@ from models.rectangle import Rectangle
 
 class Square(Rectangle):
 
-    """Square class that inherits from the Rectangle class
-       which in turn inherited from the Base class
+    """the class Square that inherits from Rectangle
     """
 
     def __init__(self, size, x=0, y=0, id=None):
-        """Instantiation of a Square object
+        """Initializes values that square
         Args:
             size (int): the size of the square
             x (int): the x coordinate
             y (int): the y coordinate
-            id (int): the id of the object
+            id (int): number of square
         """
 
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        """Overloading the __str__ method to return certain string"""
+        """Overloading the __str__ method to return
+        [Square] (<id>) <x>/<y> - <size> - in our case, width or height
+        """
 
         return "[Square] ({}) {}/{} - {}".format(self.id, self.x,
                                                  self.y, self.width)
