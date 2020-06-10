@@ -42,3 +42,22 @@ class TestBase(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+    def test_reassign_id(self):
+        """ Test if id is correct in all instances after reassigning it
+        """
+
+        Base._Base__nb_objects = 0
+        b1 = Base()
+        b2 = Base()
+        b3 = Base()
+        b4 = Base()
+
+        instances = [b1, b2, b3, b4]
+        position = 0
+
+        for i in range(100, 500, 100):
+            instances[position].id = i
+            self.assertEqual(instances[position].id, i)
+            position += 1
+
