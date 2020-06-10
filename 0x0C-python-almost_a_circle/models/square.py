@@ -31,39 +31,20 @@ class Square(Rectangle):
                                                  self.y, self.width)
 
     @property
-    def width(self):
-        """Getter of the width attribute
+    def size(self):
+        """Getter for size attribute
         Returns:
-            the width of the instance
+            the size of the Square instance
         """
 
-        return self.__width
+        return self.width
 
-    @width.setter
-    def width(self, value):
-        """Setter for the width attribute
+    @size.setter
+    def size(self, value):
+        """Setter for the size attribute
         Args:
-            value (int): value to set to width
+            value (int): the size of the Square attribute
         """
 
-        self.size("width", value)
-        self.__width = value
-
-    @property
-    def height(self):
-        """Getter for the height attribute
-        Returns:
-            the height of the instance
-        """
-
-        return self.__height
-
-    @height.setter
-    def height(self, value):
-        """Setter for the height attribute
-        Args:
-            value (int): the value to set the height to
-        """
-
-        self.size("height", value)
-        self.__height = value
+        self.width = value
+        self.height = value
