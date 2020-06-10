@@ -3,6 +3,7 @@
 
 
 import unittest
+import pep8
 from models.base import Base
 from models import rectangle
 from models.rectangle import Rectangle
@@ -13,6 +14,22 @@ area = Rectangle.area
 display = Rectangle.display
 update = Rectangle.update
 to_dictionary = Rectangle.to_dictionary
+
+
+class TestRectanglePep8(unittest.TestCase):
+    """
+    Check for validation of pep8
+    """
+    def test_pep8(self):
+        """
+        test rectangle and rectangle_base for pep8
+        """
+        style = pep8.StyleGuide(quiet=True)
+        file1 = 'models/rectangle.py'
+        file2 = 'tests/test_models/test_rectangle.py'
+        result = style.check_files([file1, file2])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warning).")
 
 
 class TestRectangle(unittest.TestCase):

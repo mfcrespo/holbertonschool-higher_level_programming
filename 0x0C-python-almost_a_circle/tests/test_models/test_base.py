@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """
-Unittest por Base class
+Unittest for Base class
 """
 import unittest
+import pep8
 import json
 import io
 import sys
@@ -12,12 +13,30 @@ from models.rectangle import Rectangle
 from models.square import Square
 
 
+class TestBasePep8(unittest.TestCase):
+    """
+    Check for validation of pep8
+    """
+    def test_pep8(self):
+        """
+        test base and test_base for pep8
+        """
+        style = pep8.StyleGuide(quiet=True)
+        file1 = 'models/base.py'
+        file2 = 'tests/test_models/test_base.py'
+        result = style.check_files([file1, file2])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warning).")
+
+
 class TestBase(unittest.TestCase):
-    """ Runs tests on the Base class
+    """
+    Runs tests on the Base class
     """
 
     def test_without_arg(self):
-        """ Test what happens when no arguments are passed
+        """
+        Test what happens when no arguments are passed
         """
 
         Base._Base__nb_objects = 0
@@ -25,7 +44,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b.id, 1)
 
     def test_with_arg(self):
-        """ Test that id is being assigned correctly
+        """
+        Test that id is being assigned correctly
         """
 
         Base._Base__nb_objects = 0
@@ -33,7 +53,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b.id, 50)
 
     def test_multiple_instances(self):
-        """ Test if id is correct after multiple instances
+        """
+        Test if id is correct after multiple instances
         """
 
         Base._Base__nb_objects = 0
@@ -47,7 +68,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b4.id, 4)
 
     def test_reassign_id(self):
-        """ Test if id is correct in all instances after reassigning it
+        """
+        Test if id is correct in all instances after reassigning it
         """
 
         Base._Base__nb_objects = 0
@@ -65,7 +87,8 @@ class TestBase(unittest.TestCase):
             position += 1
 
     def test_to_json_string(self):
-        """ Test if the to_json_string method works
+        """
+        Test if the to_json_string method works
         """
 
         json_string = Base.to_json_string([{'x': 5}])
@@ -75,7 +98,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_string_two, '[{"x": 5}, {"y": 3}]')
 
     def test_to_json_string_none(self):
-        """ Test what happens when to_json_string is passed None
+        """
+        Test what happens when to_json_string is passed None
         """
 
         json_string = Base.to_json_string(None)
@@ -91,7 +115,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(json_string, '[]')
 
     def test_create_one(self):
-        """ Test if the create method works
+        """
+        Test if the create method works
         """
 
         capturedOutput1 = io.StringIO()
@@ -117,7 +142,8 @@ class TestBase(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_load_from_file_one(self):
-        """ Test if load_from_file works with Rectangle
+        """
+        Test if load_from_file works with Rectangle
         """
 
         Base._Base__nb_objects = 0
@@ -143,7 +169,8 @@ class TestBase(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_load_from_file_two(self):
-        """ Test when load_from_file accessing a file that doesn't exist
+        """
+        Test when load_from_file accessing a file that doesn't exist
         """
 
         Base._Base__nb_objects = 0
@@ -163,7 +190,8 @@ class TestBase(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_load_from_file_three(self):
-        """ Test if load_from_file works with Square
+        """
+        Test if load_from_file works with Square
         """
 
         Base._Base__nb_objects = 0
@@ -187,7 +215,8 @@ class TestBase(unittest.TestCase):
         sys.stdout = sys.__stdout__
 
     def test_save_to_file_one(self):
-        """ Test if save_to_file method works
+        """
+        Test if save_to_file method works
         """
 
         r1 = Rectangle(10, 7, 2, 8, 50)
@@ -214,7 +243,8 @@ class TestBase(unittest.TestCase):
         os.remove("./Square.json")
 
     def test_save_to_file_two(self):
-        """ Test if save_to_file method can handle empty lists
+        """
+        Test if save_to_file method can handle empty lists
         """
 
         r1_dictionary = []
@@ -239,7 +269,8 @@ class TestBase(unittest.TestCase):
         os.remove("./Square.json")
 
     def test_save_to_file_three(self):
-        """ Test if save_to_file method can handle None
+        """
+        Test if save_to_file method can handle None
         """
 
         r1_dictionary = []
@@ -264,7 +295,8 @@ class TestBase(unittest.TestCase):
         os.remove("./Square.json")
 
     def test_from_json_string_one(self):
-        """ Test if from_json_string method works on Rectangle
+        """
+        Test if from_json_string method works on Rectangle
         """
 
         list_input = [{'id': 89, 'width': 10, 'height': 4},
@@ -279,7 +311,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(list_output, expected)
 
     def test_from_json_string_two(self):
-        """ Test if from_json_string method works on Square
+        """
+        Test if from_json_string method works on Square
         """
 
         list_input = [{'id': 89, 'size': 10},
@@ -294,7 +327,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(list_output, expected)
 
     def test_from_json_string_three(self):
-        """ Test when from_json_string receives None
+        """
+        Test when from_json_string receives None
         """
 
         list_input = None
@@ -307,7 +341,8 @@ class TestBase(unittest.TestCase):
         self.assertEqual(list_output, expected)
 
     def test_from_json_string_four(self):
-        """ Test when from_json_string receives empty list
+        """
+        Test when from_json_string receives empty list
         """
 
         list_input = []

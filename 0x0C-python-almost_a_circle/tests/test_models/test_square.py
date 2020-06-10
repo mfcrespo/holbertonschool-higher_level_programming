@@ -3,6 +3,7 @@
 
 
 import unittest
+import pep8
 from models.base import Base
 from models.rectangle import Rectangle
 from models import square
@@ -12,6 +13,22 @@ import sys
 Square = Square
 update = Square.update
 to_dictionary = Square.to_dictionary
+
+
+class TestSquarePep8(unittest.TestCase):
+    """
+    Check for validation of pep8
+    """
+    def test_pep8(self):
+        """
+        test square and square_base for pep8
+        """
+        style = pep8.StyleGuide(quiet=True)
+        file1 = 'models/square.py'
+        file2 = 'tests/test_models/test_square.py'
+        result = style.check_files([file1, file2])
+        self.assertEqual(result.total_errors, 0,
+                         "Found code style errors (and warning).")
 
 
 class TestSquare(unittest.TestCase):
