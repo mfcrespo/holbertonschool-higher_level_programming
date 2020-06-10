@@ -81,3 +81,15 @@ class Square(Rectangle):
                         self.x = kwargs['x']
                     if i == 'y':
                         self.y = kwargs['y']
+
+    def to_dictionary(self):
+        """ that returns the dictionary representation of a Square
+        """
+
+        new_dict = {}
+        attrs = ["id", "size", "x", "y"]
+
+        for att in attrs:
+            new_dict[att] = getattr(self, att)
+
+        return new_dict
