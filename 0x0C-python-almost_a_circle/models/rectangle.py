@@ -24,21 +24,6 @@ class Rectangle(Base):
         self.x = x
         self.y = y
 
-    @staticmethod
-    def size(var_size, value):
-        """ Validates and handles all error messages of height or width
-        Args:
-            var_size (str): the variable name of size
-            value (int): the value associated with var_size
-        """
-
-        size = ["width", "height"]
-
-        if type(value) != int:
-            raise TypeError("{} must be an integer".format(var_size))
-        if var_size in size and value <= 0:
-            raise ValueError("{} must be > 0".format(var_size))
-
     @property
     def width(self):
         """Getter of the width attribute
@@ -55,7 +40,10 @@ class Rectangle(Base):
             value (int): value to set to width
         """
 
-        self.size("width", value)
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        if value <= 0:
+            raise ValueError("width must be > 0")
         self.__width = value
 
     @property
@@ -74,23 +62,11 @@ class Rectangle(Base):
             value (int): the value to set the height to
         """
 
-        self.size("height", value)
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        if value <= 0:
+            raise ValueError("height must be > 0")
         self.__height = value
-
-    @staticmethod
-    def coordinate(var_coord, value):
-        """ Validates and handles all error messages
-        Args:
-            var_coord (str): the variable name
-            value (int): the value associated with var_coord
-        """
-
-        coord = ["x", "y"]
-
-        if type(value) != int:
-            raise TypeError("{} must be an integer".format(var_coord))
-        if var_coord in coord and value < 0:
-            raise ValueError("{} must be >= 0".format(var_coord))
 
     @property
     def x(self):
@@ -108,7 +84,10 @@ class Rectangle(Base):
             value (int): the value to set the x attribute to
         """
 
-        self.coordinate("x", value)
+        if type(value) is not int:
+            raise TypeError("x must be an integer")
+        if value < 0:
+            raise ValueError("x must be >= 0")
         self.__x = value
 
     @property
@@ -127,7 +106,10 @@ class Rectangle(Base):
             value (int): the value to set the y attribute to
         """
 
-        self.coordinate("y", value)
+        if type(value) is not int:
+            raise TypeError("y must be an integer")
+        if value < 0:
+            raise ValueError("y must be >= 0")
         self.__y = value
 
     def area(self):
