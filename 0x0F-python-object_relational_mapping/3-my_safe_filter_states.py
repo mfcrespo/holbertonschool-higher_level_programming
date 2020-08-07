@@ -14,7 +14,7 @@ if __name__ == '__main__':
     database = argv[3]
     name = argv[4]
     query = "SELECT * FROM states WHERE name=%s ORDER BY id ASC"
-    
+
     db = MySQLdb.connect(host="localhost", port=3306, user=user,
                          passwd=password, db=database)
 
