@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """
-Write a script that changes the name of a State object from the database
+Write a script that that prints all City objects from the database
 """
 
 from sys import argv
 from model_state import Base, State
+from model_city import City
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -20,9 +21,7 @@ if __name__ == "__main__":
 
     Session = sessionmaker(bind=engine)
     session = Session()
-    delete = session.query(State).order_by(State.id)\
-        .filter(State.name.ilike('%a%'))
-    for row in delete:
-        session.delete(row)
-    session.commit()
+    for cities, states in session.query(State, City).order_by(City.id)\
+            .filter(City.state_id == State.id).all():
+        print("{}: ({}) {}".format(states.name, cities.id, cities.name))
     session.close()
