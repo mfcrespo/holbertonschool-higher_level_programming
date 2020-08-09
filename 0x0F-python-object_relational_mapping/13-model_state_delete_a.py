@@ -22,7 +22,7 @@ if __name__ == "__main__":
     session = Session()
     delete = session.query(State).order_by(State.id).all()
     for row in delete:
-        if '%a%' in row.name:
+        if 'a' in row.name:
             session.delete(row)
     session.commit()
     session.close()
