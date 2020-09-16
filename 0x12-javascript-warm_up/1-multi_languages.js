@@ -1,4 +1,4 @@
-!/usr/bin/node
+#!/usr/bin/node
 // Prints 3 lines
 
 const firstLine = 'C is fun';
