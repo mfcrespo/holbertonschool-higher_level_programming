@@ -10,7 +10,7 @@ const fileC = process.argv[4];
 if (fileA && fileB && fileC) {
   const fs = require('fs');
   let text = '';
-  text = fs.readFileSync(fileA) + text;
-  text = fs.readFileSync(fileB) + text;
+  text = text + fs.readFileSync(fileA);
+  text = text + fs.readFileSync(fileB);
   fs.writeFileSync(fileC, text);
 }
